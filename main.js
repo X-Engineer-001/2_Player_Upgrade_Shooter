@@ -94,14 +94,14 @@ function IsCollidedMovingPointToPointOrPointToSurface(x,y,targetx,targety,target
   }
 }
 function IsCollidedMovingPointToSurfaceOrSurfaceToSurface(x,y,width,height,targetx,targety,targetwidth,targetheight){
-  if(iscollided(x,y,targetx,targety,targetwidth,targetheight)||
-    iscollided(x+width,y,targetx,targety,targetwidth,targetheight)||
-    iscollided(x,y+height,targetx,targety,targetwidth,targetheight)||
-    iscollided(x+width,y+height,targetx,targety,targetwidth,targetheight)||
-    iscollided(targetx,targety,x,y,width,height)||
-    iscollided(targetx+targetwidth,targety,x,y,width,height)||
-    iscollided(targetx,targety+targetheight,x,y,width,height)||
-    iscollided(targetx+targetwidth,targety+targetheight,x,y,width,height)
+  if(IsCollidedMovingPointToPointOrPointToSurface(x,y,targetx,targety,targetwidth,targetheight)||
+    IsCollidedMovingPointToPointOrPointToSurface(x+width,y,targetx,targety,targetwidth,targetheight)||
+    IsCollidedMovingPointToPointOrPointToSurface(x,y+height,targetx,targety,targetwidth,targetheight)||
+    IsCollidedMovingPointToPointOrPointToSurface(x+width,y+height,targetx,targety,targetwidth,targetheight)||
+    IsCollidedMovingPointToPointOrPointToSurface(targetx,targety,x,y,width,height)||
+    IsCollidedMovingPointToPointOrPointToSurface(targetx+targetwidth,targety,x,y,width,height)||
+    IsCollidedMovingPointToPointOrPointToSurface(targetx,targety+targetheight,x,y,width,height)||
+    IsCollidedMovingPointToPointOrPointToSurface(targetx+targetwidth,targety+targetheight,x,y,width,height)
     ){
     return true;
   }else{
