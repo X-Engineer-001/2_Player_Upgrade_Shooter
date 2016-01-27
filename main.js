@@ -46,7 +46,7 @@ var walls=[];
 var p1={
   x:0,
   y:0,
-  direction:l,
+  direction:{x:-1,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -58,7 +58,7 @@ var p1={
 var p2={
   x:0,
   y:0,
-  direction:r,
+  direction:{x:1,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -152,28 +152,28 @@ function draw(){
     for(var i=0;i<walls.length;i++){
     ctx.drawImage(wall,walls[i].x,walls[i].y,walls[i].width,walls[i].height);
     }
-    if(p1.direction==u){
+    if(p1.direction.y==-1){
       ctx.drawImage(p1u,p1.x,p1.y,20,20);
     }
-    if(p1.direction==d){
+    if(p1.direction.y==1){
       ctx.drawImage(p1d,p1.x,p1.y,20,20);
     }
-    if(p1.direction==l){
+    if(p1.direction.x==-1){
       ctx.drawImage(p1l,p1.x,p1.y,20,20);
     }
-    if(p1.direction==r){
+    if(p1.direction.x==1){
       ctx.drawImage(p1r,p1.x,p1.y,20,20);
     }
-    if(p2.direction==u){
+    if(p2.direction.y==-1){
       ctx.drawImage(p2u,p2.x,p2.y,20,20);
     }
-    if(p2.direction==d){
+    if(p2.direction.y==1){
       ctx.drawImage(p2d,p2.x,p2.y,20,20);
     }
-    if(p2.direction==l){
+    if(p2.direction.x==-1){
       ctx.drawImage(p2l,p2.x,p2.y,20,20);
     }
-    if(p2.direction==r){
+    if(p2.direction.x==1){
       ctx.drawImage(p2r,p2.x,p2.y,20,20);
     }
   }
