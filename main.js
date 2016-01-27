@@ -101,7 +101,7 @@ function IsCollidedMovingPointToSurfaceOrSurfaceToSurface(x,y,width,height,targe
     iscollided(targetx,targety,x,y,width,height)||
     iscollided(targetx+targetwidth,targety,x,y,width,height)||
     iscollided(targetx,targety+targetheight,x,y,width,height)||
-    iscollided(targetx+targetwidth,targety+targetheight,x,y,width,height)||
+    iscollided(targetx+targetwidth,targety+targetheight,x,y,width,height)
     ){
     return true;
   }else{
