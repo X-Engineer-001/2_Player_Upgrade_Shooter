@@ -138,11 +138,11 @@ function draw(){
     walls.push(newwall);
     newwall=new Wall();
     walls.push(newwall);
-    while(!IsCollidedToWalls(p1.x,p1.y,20,20)){
+    while(IsCollidedToWalls(p1.x,p1.y,20,20)){
       p1.x=Math.floor(Math.random()*331)+350;
       p1.y=Math.floor(Math.random()*681);
     }
-    while(!IsCollidedToWalls(p2.x,p2.y,20,20)){
+    while(IsCollidedToWalls(p2.x,p2.y,20,20)){
       p2.x=Math.floor(Math.random()*331);
       p2.y=Math.floor(Math.random()*681);
     }
