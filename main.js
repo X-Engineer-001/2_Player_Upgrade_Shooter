@@ -44,28 +44,28 @@ var wall=document.createElement("img");
 wall.src="images/wall.png";
 var walls=[];
 var p1={
-  x=0,
-  y=0,
-  direction=l,
-  attack=15,
-  critical=1.2,
-  shot=1,
-  absorb=0,
-  armor=100,
-  hp=100,
-  retort=0
+  x:0,
+  y:0,
+  direction:l,
+  attack:15,
+  critical:1.2,
+  shot:1,
+  absorb:0,
+  armor:100,
+  hp:100,
+  retort:0
 };
 var p2={
-  x=0,
-  y=0,
-  direction=r,
-  attack=15,
-  critical=1.2,
-  shot=1,
-  absorb=0,
-  armor=100,
-  hp=100,
-  retort=0
+  x:0,
+  y:0,
+  direction:r,
+  attack:15,
+  critical:1.2,
+  shot:1,
+  absorb:0,
+  armor:100,
+  hp:100,
+  retort:0
 };
 function Wall(){
   this.x=Math.floor(Math.random()*671);
