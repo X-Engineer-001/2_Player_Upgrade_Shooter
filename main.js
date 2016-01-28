@@ -1,4 +1,4 @@
-var FPS=1000;
+var FPS=1;
 var counter=0;
 var flag=0;
 var p1key=0;
@@ -260,8 +260,6 @@ function draw(){
     }
   }
   counter++
-  if(counter%1000==0){
-    console.log(counter);
-  }
+  console.log(counter);
 }
-setInterval(draw,1);
+setInterval(draw,1000/FPS);
