@@ -112,7 +112,7 @@ function IsCollidedMovingPointToSurfaceOrSurfaceToSurface(x,y,width,height,targe
     return false;
   }
 }
-function IsCollidedToWalls(x,y,width,height){
+function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
   for(var i=0;i<walls.length;i++){
     if(IsCollidedMovingPointToSurfaceOrSurfaceToSurface(walls[i].x,walls[i].y,walls[i].width,walls[i].height,x,y,width,height)){
       return true;
@@ -120,6 +120,7 @@ function IsCollidedToWalls(x,y,width,height){
   }
   return false;
 }
+function IsCollidedToWallsMovingSurface
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
@@ -169,11 +170,11 @@ function draw(){
     walls.push(newwall);
     newwall=new Wall();
     walls.push(newwall);
-    while(IsCollidedToWalls(p1.x,p1.y,20,20)){
+    while(IsCollidedToWallsMovingPointOrSurface(p1.x,p1.y,20,20)){
       p1.x=Math.floor(Math.random()*311)+350;
       p1.y=Math.floor(Math.random()*641)+20;
     }
-    while(IsCollidedToWalls(p2.x,p2.y,20,20)){
+    while(IsCollidedToWallsMovingPointOrSurface(p2.x,p2.y,20,20)){
       p2.x=Math.floor(Math.random()*311)+20;
       p2.y=Math.floor(Math.random()*641)+20;
     }
@@ -209,9 +210,29 @@ function draw(){
       ctx.drawImage(p2r,p2.x,p2.y,20,20);
     }
     p1.x=p1.x+(p1.movedirection.x*300/FPS);
+    if(IsCollidedToWallsMovingPointOrSurface(p1.x,p1.y,20,20)||
+    IsCollidedToWallsMovingPointOrSurface(p1.x-((150/FPS)-10),p1.y-((150/FPS)-10),300/FPS,300/FPS)||
+    p1.x<20||p1.x>660){
+      p1.x=p1.x-(p1.movedirection.x*300/FPS);
+    }
     p1.y=p1.y+(p1.movedirection.y*300/FPS);
+    if(IsCollidedToWallsMovingPointOrSurface(p1.x,p1.y,20,20)||
+    IsCollidedToWallsMovingPointOrSurface(p1.x-((150/FPS)-10),p1.y-((150/FPS)-10),300/FPS,300/FPS)||
+    p1.y<20||p1.y>660){
+      p1.y=p1.y-(p1.movedirection.y*300/FPS);
+    }
     p2.x=p2.x+(p2.movedirection.x*300/FPS);
+    if(IsCollidedToWallsMovingPointOrSurface(p2.x,p2.y,20,20)||
+    IsCollidedToWallsMovingPointOrSurface(p2.x-((150/FPS)-10),p2.y-((150/FPS)-10),300/FPS,300/FPS)||
+    p2.x<20||p2.x>660){
+      p2.x=p2.x-(p2.movedirection.x*300/FPS);
+    }
     p2.y=p2.y+(p2.movedirection.y*300/FPS);
+    if(IsCollidedToWallsMovingPointOrSurface(p2.x,p2.y,20,20)||
+    IsCollidedToWallsMovingPointOrSurface(p2.x-((150/FPS)-10),p2.y-((150/FPS)-10),300/FPS,300/FPS)||
+    p2.y<20||p2.y>660){
+      p2.y=p2.y-(p2.movedirection.y*300/FPS);
+    }
   }
 }
 setInterval(draw,1000/FPS);
