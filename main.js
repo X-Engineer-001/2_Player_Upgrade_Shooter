@@ -1,4 +1,4 @@
-var FPS=1;
+var FPS=2;
 var counter=0;
 var flag=0;
 var p1key=0;
