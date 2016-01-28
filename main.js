@@ -92,7 +92,7 @@ function FindAbsolutevValue(a){
     return (-1*a);
   }
 }
-function p1bullet(){
+function P1bullet(){
   this.x=p1.x+7;
   this.y=p1.y+7;
   this.direction=p1.direction;
@@ -125,7 +125,7 @@ function p1bullet(){
     }
   };
 }
-function p2bullet(){
+function P2bullet(){
   this.x=p2.x+7;
   this.y=p2.y+7;
   this.direction=p2.direction;
@@ -226,12 +226,12 @@ document.onkeydown=function(){
     p2key=83;
     p2.movedirection={x:0,y:1};
   }
-  if(keycode==48){
-    var newbullet=new p1bullet();
+  if(keycode==96){
+    var newbullet=new P1bullet();
     p1bullets.push(newbullet);
   }
   if(keycode==86){
-    var newbullet=new p2bullet();
+    var newbullet=new P2bullet();
     p2bullets.push(newbullet);
   }
   }
