@@ -1,5 +1,7 @@
 var FPS=60
 var flag=0;
+var p1key=0;
+var p2key=0;
 var canvas=document.getElementById("gamecanvas");
 var ctx=canvas.getContext("2d");
 var bg=document.createElement("img");
@@ -120,40 +122,48 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
   }
   return false;
 }
-document.onkeyup=function(){
-  var keycode=event.which||event.keyCode;
-  if(keycode==37||keycode==38||keycode==39||keycode==40){
-    p1.movedirection={x:0,y:0};
-  }
-  if(keycode==65||keycode==87||keycode==68||keycode==83){
-    p2.movedirection={x:0,y:0};
-  }
-}
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
+    p1key=37;
     p1.movedirection={x:-1,y:0};
   }
   if(keycode==38){
+    p1key=38;
     p1.movedirection={x:0,y:-1};
   }
   if(keycode==39){
+    p1key=39;
     p1.movedirection={x:1,y:0};
   }
   if(keycode==40){
+    p1key=40;
     p1.movedirection={x:0,y:1};
   }
   if(keycode==65){
+    p2key=65;
     p2.movedirection={x:-1,y:0};
   }
   if(keycode==87){
+    p2key=87;
     p2.movedirection={x:0,y:-1};
   }
   if(keycode==68){
+    p2key=68;
     p2.movedirection={x:1,y:0};
   }
   if(keycode==83){
+    p2key=83;
     p2.movedirection={x:0,y:1};
+  }
+}
+document.onkeyup=function(){
+  var keycode=event.which||event.keyCode;
+  if((keycode==37||keycode==38||keycode==39||keycode==40)&&p1key==keyCode){
+    p1.movedirection={x:0,y:0};
+  }
+  if((keycode==65||keycode==87||keycode==68||keycode==83)&&p2key==keyCode){
+    p2.movedirection={x:0,y:0};
   }
 }
 function draw(){
