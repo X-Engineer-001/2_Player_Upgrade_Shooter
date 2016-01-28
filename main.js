@@ -49,6 +49,7 @@ var p1={
   x:Math.floor(Math.random()*331)+350,
   y:Math.floor(Math.random()*681),
   direction:{x:-1,y:0},
+  movedirection:{x:-1,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -61,6 +62,7 @@ var p2={
   x:Math.floor(Math.random()*331),
   y:Math.floor(Math.random()*681),
   direction:{x:1,y:0},
+  movedirection:{x:1,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -121,28 +123,28 @@ function IsCollidedToWalls(x,y,width,height){
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
-    p1.x=p1.x-(300/FPS);
+    p1.movedirection={x:-1,y:0};
   }
   if(keycode==38){
-    p1.y=p1.y-(300/FPS);
+    p1.movedirection={x:0,y:-1};
   }
   if(keycode==39){
-    p1.x=p1.x+(300/FPS);
+    p1.movedirection={x:1,y:0};
   }
   if(keycode==40){
-    p1.y=p1.y+(300/FPS);
+    p1.movedirection={x:0,y:1};
   }
   if(keycode==65){
-    p2.x=p2.x-(300/FPS);
+    p2.movedirection={x:-1,y:0};
   }
   if(keycode==87){
-    p2.y=p2.y-(300/FPS);
+    p2.movedirection={x:0,y:-1};
   }
   if(keycode==68){
-    p2.x=p2.x+(300/FPS);
+    p2.movedirection={x:1,y:0};
   }
   if(keycode==83){
-    p2.y=p2.y+(300/FPS);
+    p2.movedirection={x:0,y:1};
   }
 }
 function draw(){
@@ -206,6 +208,10 @@ function draw(){
     if(p2.direction.x==1){
       ctx.drawImage(p2r,p2.x,p2.y,20,20);
     }
+    P1.X=P1.X+(p1.movedirection.X*300/FPS);
+    P1.y=P1.y+(p1.movedirection.y*300/FPS);
+    P2.X=P2.X+(p2.movedirection.X*300/FPS);
+    P2.y=P2.y+(p2.movedirection.y*300/FPS);
   }
 }
 setInterval(draw,1000/FPS);
