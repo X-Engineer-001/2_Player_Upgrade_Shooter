@@ -46,8 +46,8 @@ var wall=document.createElement("img");
 wall.src="images/wall.png";
 var walls=[];
 var p1={
-  x:Math.floor(Math.random()*311)+350;
-  y:Math.floor(Math.random()*641)+20;
+  x:Math.floor(Math.random()*311)+350,
+  y:Math.floor(Math.random()*641)+20,
   direction:{x:-1,y:0},
   movedirection:{x:-1,y:0},
   attack:15,
@@ -59,8 +59,8 @@ var p1={
   retort:0
 };
 var p2={
-  x:Math.floor(Math.random()*311)+20;
-  y:Math.floor(Math.random()*641)+20;
+  x:Math.floor(Math.random()*311)+20,
+  y:Math.floor(Math.random()*641)+20,
   direction:{x:1,y:0},
   movedirection:{x:1,y:0},
   attack:15,
