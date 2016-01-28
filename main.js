@@ -149,10 +149,10 @@ document.onkeydown=function(){
 }
 document.onkeyup=function(){
   var keycode=event.which||event.keyCode;
-  if(keycode==37||38||39||40){
+  if(keycode==37||keycode==38||keycode==39||keycode==40){
     p1.movedirection={x:0,y:0};
   }
-  if(keycode==65||87||68||83){
+  if(keycode==65||keycode==87||keycode==68||keycode==83){
     p2.movedirection={x:0,y:0};
   }
 }
