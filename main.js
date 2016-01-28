@@ -1,4 +1,5 @@
 var FPS=60;
+var counter=0;
 var flag=0;
 var p1key=0;
 var p2key=0;
@@ -257,6 +258,10 @@ function draw(){
     p2.y<20||p2.y>660){
       p2.y=p2.y-(p2.movedirection.y*300/FPS);
     }
+  }
+  counter++
+  if(counter%1000==0){
+    console.log(counter);
   }
 }
 setInterval(draw,1000/FPS);
