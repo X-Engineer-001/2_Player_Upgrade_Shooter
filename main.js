@@ -86,7 +86,6 @@ function p1bullet(){
   this.y=p1.y+7;
   this.direction=p1.direction;
   this.move=function(){
-    if()
   }
 }
 function p2bullet(){
