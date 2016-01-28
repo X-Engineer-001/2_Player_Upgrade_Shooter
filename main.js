@@ -1,4 +1,4 @@
-var FPS=60
+var FPS=500;
 var flag=0;
 var p1key=0;
 var p2key=0;
@@ -47,6 +47,8 @@ p2bullet.src="images/p2bullet.png";
 var wall=document.createElement("img");
 wall.src="images/wall.png";
 var walls=[];
+var p1bullets=[];
+var p2bullets=[];
 var p1={
   x:Math.floor(Math.random()*311)+350,
   y:Math.floor(Math.random()*641)+20,
@@ -83,6 +85,9 @@ function p1bullet(){
   this.x=p1.x+7;
   this.y=p1.y+7;
   this.direction=p1.direction;
+  this.move=function(){
+    if()
+  }
 }
 function p2bullet(){
   this.x=p2.x+7;
@@ -124,6 +129,7 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
 }
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
+  if(flag==1){
   if(keycode==37){
     p1key=37;
     p1.movedirection={x:-1,y:0};
@@ -155,6 +161,7 @@ document.onkeydown=function(){
   if(keycode==83){
     p2key=83;
     p2.movedirection={x:0,y:1};
+  }
   }
 }
 document.onkeyup=function(){
