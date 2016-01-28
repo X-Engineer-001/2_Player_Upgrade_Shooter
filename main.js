@@ -208,10 +208,10 @@ function draw(){
     if(p2.direction.x==1){
       ctx.drawImage(p2r,p2.x,p2.y,20,20);
     }
-    P1.X=P1.X+(p1.movedirection.X*300/FPS);
-    P1.y=P1.y+(p1.movedirection.y*300/FPS);
-    P2.X=P2.X+(p2.movedirection.X*300/FPS);
-    P2.y=P2.y+(p2.movedirection.y*300/FPS);
+    p1.X=p1.X+(p1.movedirection.X*300/FPS);
+    p1.y=p1.y+(p1.movedirection.y*300/FPS);
+    p2.X=p2.X+(p2.movedirection.X*300/FPS);
+    p2.y=p2.y+(p2.movedirection.y*300/FPS);
   }
 }
 setInterval(draw,1000/FPS);
