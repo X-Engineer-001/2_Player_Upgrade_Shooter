@@ -120,7 +120,7 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
   }
   return false;
 }
-document.onkeydown=function(){
+document.onkeypress=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
     p1.movedirection={x:-1,y:0};
