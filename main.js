@@ -170,12 +170,12 @@ function draw(){
     newwall=new Wall();
     walls.push(newwall);
     while(IsCollidedToWalls(p1.x,p1.y,20,20)){
-      p1.x=Math.floor(Math.random()*331)+350;
-      p1.y=Math.floor(Math.random()*681);
+      p1.x=Math.floor(Math.random()*311)+350;
+      p1.y=Math.floor(Math.random()*641)+20;
     }
     while(IsCollidedToWalls(p2.x,p2.y,20,20)){
-      p2.x=Math.floor(Math.random()*331);
-      p2.y=Math.floor(Math.random()*681);
+      p2.x=Math.floor(Math.random()*311)+20;
+      p2.y=Math.floor(Math.random()*641)+20;
     }
     flag=1;
   }
@@ -208,9 +208,9 @@ function draw(){
     if(p2.direction.x==1){
       ctx.drawImage(p2r,p2.x,p2.y,20,20);
     }
-    p1.X=p1.X+(p1.movedirection.X*300/FPS);
+    p1.x=p1.x+(p1.movedirection.x*300/FPS);
     p1.y=p1.y+(p1.movedirection.y*300/FPS);
-    p2.X=p2.X+(p2.movedirection.X*300/FPS);
+    p2.x=p2.x+(p2.movedirection.x*300/FPS);
     p2.y=p2.y+(p2.movedirection.y*300/FPS);
   }
 }
