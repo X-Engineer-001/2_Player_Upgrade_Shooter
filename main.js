@@ -264,4 +264,4 @@ function draw(){
     console.log(counter);
   }
 }
-setInterval(draw,1000/FPS);
+setInterval(draw,1);
