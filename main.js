@@ -116,6 +116,21 @@ function IsCollidedToWalls(x,y,width,height){
   }
   return false;
 }
+document.onkeydown=function(){
+  var keycode=event.which||event.keyCode;
+  if(keycode==37){
+    p1.x=p1.x-(65/FPS);
+  }
+  if(keycode==38){
+    p1.y=p1.y-(65/FPS);
+  }
+  if(keycode==39){
+    p1.x=p1.x+(65/FPS);
+  }
+  if(keycode==40){
+    p1.y=p1.y+(65/FPS);
+  }
+}
 function draw(){
   if(flag==0){
     var newwall=new Wall();
