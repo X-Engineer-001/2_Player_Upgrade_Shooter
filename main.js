@@ -2,6 +2,8 @@ var FPS=60
 var flag=0;
 var canvas=document.getElementById("gamecanvas");
 var ctx=canvas.getContext("2d");
+var bg=document.createElement("img");
+bg.src="images/bg.png";
 var p1u=document.createElement("img");
 p1u.src="images/u/p1planeu.png";
 var p1d=document.createElement("img");
@@ -119,16 +121,28 @@ function IsCollidedToWalls(x,y,width,height){
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
-    p1.x=p1.x-(65/FPS);
+    p1.x=p1.x-(150/FPS);
   }
   if(keycode==38){
-    p1.y=p1.y-(65/FPS);
+    p1.y=p1.y-(150/FPS);
   }
   if(keycode==39){
-    p1.x=p1.x+(65/FPS);
+    p1.x=p1.x+(150/FPS);
   }
   if(keycode==40){
-    p1.y=p1.y+(65/FPS);
+    p1.y=p1.y+(150/FPS);
+  }
+  if(keycode==65){
+    p2.y=p2.y+(150/FPS);
+  }
+  if(keycode==87){
+    p2.y=p2.y+(150/FPS);
+  }
+  if(keycode==68){
+    p2.y=p2.y+(150/FPS);
+  }
+  if(keycode==83){
+    p2.y=p2.y+(150/FPS);
   }
 }
 function draw(){
@@ -164,6 +178,7 @@ function draw(){
     flag=1;
   }
   if(flag==1){
+    ctx.drawImage(bg,0,0,700,700);
     for(var i=0;i<walls.length;i++){
     ctx.drawImage(wall,walls[i].x,walls[i].y,walls[i].width,walls[i].height);
     }
