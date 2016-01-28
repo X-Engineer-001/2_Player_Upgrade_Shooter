@@ -121,28 +121,28 @@ function IsCollidedToWalls(x,y,width,height){
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
-    p1.x=p1.x-(150/FPS);
+    p1.x=p1.x-(300/FPS);
   }
   if(keycode==38){
-    p1.y=p1.y-(150/FPS);
+    p1.y=p1.y-(300/FPS);
   }
   if(keycode==39){
-    p1.x=p1.x+(150/FPS);
+    p1.x=p1.x+(300/FPS);
   }
   if(keycode==40){
-    p1.y=p1.y+(150/FPS);
+    p1.y=p1.y+(300/FPS);
   }
   if(keycode==65){
-    p2.y=p2.y+(150/FPS);
+    p2.x=p2.x-(300/FPS);
   }
   if(keycode==87){
-    p2.y=p2.y+(150/FPS);
+    p2.y=p2.y-(300/FPS);
   }
   if(keycode==68){
-    p2.y=p2.y+(150/FPS);
+    p2.x=p2.x+(300/FPS);
   }
   if(keycode==83){
-    p2.y=p2.y+(150/FPS);
+    p2.y=p2.y+(300/FPS);
   }
 }
 function draw(){
