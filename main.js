@@ -119,6 +119,14 @@ function P1bullet(){
       p2.hp=p2.hp-p2cost;
       p1.hp=p1.hp-(p1cost-heal);
       p1bulletspliceflag=1;
+    }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
+    IsCollidedToWallsMovingPointOrSurface(
+      this.x-(((500/FPS)-3)*FindAbsolutevValue(this.direction.x)),
+      this.y-(((500/FPS)-3)*FindAbsolutevValue(this.direction.y)),
+      (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
+      (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)||
+    this.x<20||this.x>674||this.y<20||this.y>674){
+      p1bulletspliceflag=1;
     }else{
       this.x=this.x+(1000*this.direction.x/FPS);
       this.y=this.y+(1000*this.direction.y/FPS);
@@ -151,6 +159,14 @@ function P2bullet(){
       }
       p1.hp=p1.hp-p1cost;
       p2.hp=p2.hp-(p2cost-heal);
+      p2bulletspliceflag=1;
+    }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
+    IsCollidedToWallsMovingPointOrSurface(
+      this.x-(((500/FPS)-3)*FindAbsolutevValue(this.direction.x)),
+      this.y-(((500/FPS)-3)*FindAbsolutevValue(this.direction.y)),
+      (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
+      (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)||
+    this.x<20||this.x>674||this.y<20||this.y>674){
       p2bulletspliceflag=1;
     }else{
       this.x=this.x+(1000*this.direction.x/FPS);
