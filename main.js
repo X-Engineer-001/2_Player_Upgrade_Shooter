@@ -49,7 +49,7 @@ var p1={
   x:Math.floor(Math.random()*311)+350,
   y:Math.floor(Math.random()*641)+20,
   direction:{x:-1,y:0},
-  movedirection:{x:-1,y:0},
+  movedirection:{x:0,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -62,7 +62,7 @@ var p2={
   x:Math.floor(Math.random()*311)+20,
   y:Math.floor(Math.random()*641)+20,
   direction:{x:1,y:0},
-  movedirection:{x:1,y:0},
+  movedirection:{x:0,y:0},
   attack:15,
   critical:1.2,
   shot:1,
@@ -145,6 +145,15 @@ document.onkeydown=function(){
   }
   if(keycode==83){
     p2.movedirection={x:0,y:1};
+  }
+}
+document.onkeyup=function(){
+  var keycode=event.which||event.keyCode;
+  if(keycode==37||38||39||40){
+    p1.movedirection={x:0,y:0};
+  }
+  if(keycode==65||87||68||83){
+    p2.movedirection={x:0,y:0};
   }
 }
 function draw(){
