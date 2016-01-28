@@ -120,7 +120,16 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
   }
   return false;
 }
-document.onkeypress=function(){
+document.onkeyup=function(){
+  var keycode=event.which||event.keyCode;
+  if(keycode==37||keycode==38||keycode==39||keycode==40){
+    p1.movedirection={x:0,y:0};
+  }
+  if(keycode==65||keycode==87||keycode==68||keycode==83){
+    p2.movedirection={x:0,y:0};
+  }
+}
+document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(keycode==37){
     p1.movedirection={x:-1,y:0};
@@ -145,15 +154,6 @@ document.onkeypress=function(){
   }
   if(keycode==83){
     p2.movedirection={x:0,y:1};
-  }
-}
-document.onkeyup=function(){
-  var keycode=event.which||event.keyCode;
-  if(keycode==37||keycode==38||keycode==39||keycode==40){
-    p1.movedirection={x:0,y:0};
-  }
-  if(keycode==65||keycode==87||keycode==68||keycode==83){
-    p2.movedirection={x:0,y:0};
   }
 }
 function draw(){
