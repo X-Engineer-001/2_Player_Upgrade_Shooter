@@ -2,6 +2,8 @@ var FPS=60;
 var counter=0;
 var p1bulletspliceflag=0;
 var p2bulletspliceflag=0;
+var p1shotdelay=0;
+var p2shotdelay=0;
 var flag=0;
 var p1key=0;
 var p2key=0;
@@ -243,12 +245,18 @@ document.onkeydown=function(){
     p2.movedirection={x:0,y:1};
   }
   if(keycode==96){
-    var newbullet=new P1bullet();
-    p1bullets.push(newbullet);
+    if(p1shotdelay<=0){
+      var newbullet=new P1bullet();
+      p1bullets.push(newbullet);
+      p1shotdelay=FPS;
+    }
   }
   if(keycode==86){
-    var newbullet=new P2bullet();
-    p2bullets.push(newbullet);
+    if(p2shotdelay<=0){
+      var newbullet=new P2bullet();
+      p2bullets.push(newbullet);
+      p2shotdelay=FPS;
+    }
   }
   }
 }
@@ -364,6 +372,8 @@ function draw(){
         ctx.drawImage(p2bullet,p2bullets[i].x,p2bullets[i].y,6,6);
       }
     }
+    p1shotdelay=p1shotdelay-1;
+    p2shotdelay=p2shotdelay-1;
   }
 }
 setInterval(draw,1000/FPS);
