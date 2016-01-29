@@ -205,25 +205,25 @@ function P2bullet(){
 }
 function Upgrade(){
   var randommath=Math.floor(Math.random()*14);
-  if(randommath==0){
+  if(randommath==13){
     this.item=bullet;
   }
-  if(randommath==1){
+  if(randommath==12){
     this.item=shot;
   }
-  if(randommath==2||randommath==3){
+  if(randommath==11||randommath==10){
     this.item=absorb;
   }
-  if(randommath==4||randommath==5){
+  if(randommath==9||randommath==8){
     this.item=critical;
   }
-  if(randommath==6||randommath==7){
+  if(randommath==7||randommath==6){
     this.item=retort;
   }
-  if(randommath==8||randommath==9||randommath==10){
+  if(randommath==5||randommath==4||randommath==3){
     this.item=attack;
   }
-  if(randommath==11||randommath==12||randommath==13){
+  if(randommath==2||randommath==1||randommath==0){
     this.item=hp;
   }
   this.x=25+((counter%3)*225);
