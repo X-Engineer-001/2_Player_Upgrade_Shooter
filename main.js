@@ -217,7 +217,7 @@ function Upgrade(){
   if(randommath==25||randommath==24||randommath==23){
     this.item=critical;
   }
-  if(randommath==22||randommath==231||randommath==20){
+  if(randommath==22||randommath==21||randommath==20){
     this.item=retort;
   }
   if(randommath==19||randommath==18||randommath==17||randommath==16||randommath==15||randommath==14||randommath==13||randommath==12||randommath==11||randommath==10){
