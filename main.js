@@ -51,6 +51,10 @@ var p2bullet=document.createElement("img");
 p2bullet.src="images/p2bullet.png";
 var wall=document.createElement("img");
 wall.src="images/wall.png";
+var absorb=document.createElement("img");
+absorb.src="images/absorb.png";
+var attack=document.createElement("img");
+attack.src="images/attack.png";
 var walls=[];
 var p1bullets=[];
 var p2bullets=[];
@@ -59,26 +63,30 @@ var p1={
   y:Math.floor(Math.random()*641)+20,
   direction:{x:-1,y:0},
   movedirection:{x:0,y:0},
-  attack:15,
-  critical:0.2,
-  shot:1,
-  absorb:0,
-  armor:100,
-  hp:100,
-  retort:0
+  Attack:10,
+  Critical:0.2,
+  Shot:0.5,
+  Absorb:0,
+  Hp:100,
+  Fightinghp:100,
+  Retort:0,
+  Bullet:5,
+  Fightingbullet:5
 };
 var p2={
   x:Math.floor(Math.random()*311)+20,
   y:Math.floor(Math.random()*641)+20,
   direction:{x:1,y:0},
   movedirection:{x:0,y:0},
-  attack:15,
-  critical:0.2,
-  shot:1,
-  absorb:0,
-  armor:100,
-  hp:100,
-  retort:0
+  Attack:10,
+  Critical:0.2,
+  Shot:0.5,
+  Absorb:0,
+  Hp:100,
+  Fightinghp:100,
+  Retort:0,
+  Bullet:5,
+  Fightingbullet:5
 };
 function Wall(){
   this.x=Math.floor(Math.random()*671);
@@ -106,20 +114,20 @@ function P1bullet(){
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)
     ){
-      var p2cost=p1.attack;
+      var p2cost=p1.Attack;
       var p1cost=0;
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
-        p2cost=p2cost+(p1.attack*p1.critical);
+        p2cost=p2cost+(p1.Attack*p1.Critical);
       }
       if(Math.floor(Math.random()*4)==0){
-        heal=p2cost*p1.absorb;
+        heal=p2cost*p1.Absorb;
       }
       if(Math.floor(Math.random()*4)==0){
-        p1cost=p2cost*p2.retort;
+        p1cost=p2cost*p2.Retort;
       }
-      p2.hp=p2.hp-p2cost;
-      p1.hp=p1.hp-(p1cost-heal);
+      p2.Fightinghp=p2.Fightinghp-p2cost;
+      p1.Fightinghp=p1.Fightinghp-(p1cost-heal);
       p1bulletspliceflag=1;
     }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
     IsCollidedToWallsMovingPointOrSurface(
@@ -147,20 +155,20 @@ function P2bullet(){
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)
     ){
-      var p1cost=p2.attack;
+      var p1cost=p2.Attack;
       var p2cost=0;
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
-        p1cost=p1cost+(p2.attack*p2.critical);
+        p1cost=p1cost+(p2.Attack*p2.Critical);
       }
       if(Math.floor(Math.random()*4)==0){
-        heal=p1cost*p2.absorb;
+        heal=p1cost*p2.Absorb;
       }
       if(Math.floor(Math.random()*4)==0){
-        p2cost=p1cost*p1.retort;
+        p2cost=p1cost*p1.Retort;
       }
-      p1.hp=p1.hp-p1cost;
-      p2.hp=p2.hp-(p2cost-heal);
+      p1.Fightinghp=p2.Fightinghp-p2cost;
+      p2.Fightinghp=p1.Fightinghp-(p1cost-heal);
       p2bulletspliceflag=1;
     }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
     IsCollidedToWallsMovingPointOrSurface(
@@ -245,16 +253,22 @@ document.onkeydown=function(){
     p2.movedirection={x:0,y:1};
   }
   if(keycode==96){
-    if(p1shotdelay<=0){
-      var newbullet=new P1bullet();
-      p1bullets.push(newbullet);
+    if(p1shotdelay<=0&&p1.Fightingbullet>0){
+      for(var i=0;i<p1.Shot;i++){
+        var newbullet=new P1bullet();
+        p1bullets.push(newbullet);
+      }
+      p1.Fightingbullet=p1.Fightingbullet-1;
       p1shotdelay=FPS;
     }
   }
   if(keycode==86){
-    if(p2shotdelay<=0){
-      var newbullet=new P2bullet();
-      p2bullets.push(newbullet);
+    if(p2shotdelay<=0&&p2.Fightingbullet>0){
+      for(var i=0;i<p2.Shot;i++){
+        var newbullet=new P2bullet();
+        p2bullets.push(newbullet);
+      }
+      p2.Fightingbullet=p2.Fightingbullet-1;
       p2shotdelay=FPS;
     }
   }
@@ -374,6 +388,8 @@ function draw(){
     }
     p1shotdelay=p1shotdelay-1;
     p2shotdelay=p2shotdelay-1;
+    ctx.drawImage(p1bullet,690,700-(700*p1.Fightinghp/p1.Hp),10,700*p1.Fightinghp/p1.Hp);
+    ctx.drawImage(p2bullet,0,700-(700*p2.Fightinghp/p2.Hp),10,700*p2.Fightinghp/p2.Hp);
   }
 }
 setInterval(draw,1000/FPS);
