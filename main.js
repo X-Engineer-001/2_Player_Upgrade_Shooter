@@ -496,7 +496,11 @@ function draw(){
     counter=counter+1;
     var newupgrade=new Upgrade();
     upgrades.push(newupgrade);
-    for (vari=0;i<upgrades.length;i++){
+    flag=3;
+  }
+  if(flag==3){
+    ctx.drawImage(bg,0,0,700,700);
+    for(var i=0;i<upgrades.length;i++){
       ctx.drawImage(upgrades[i].item,upgrades[i].x,upgrades[i].y,200,200);
     }
   }
