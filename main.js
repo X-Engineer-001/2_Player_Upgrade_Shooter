@@ -167,8 +167,8 @@ function P2bullet(){
       if(Math.floor(Math.random()*4)==0){
         p2cost=p1cost*p1.Retort;
       }
-      p1.Fightinghp=p2.Fightinghp-p2cost;
-      p2.Fightinghp=p1.Fightinghp-(p1cost-heal);
+      p1.Fightinghp=p1.Fightinghp-p1cost;
+      p2.Fightinghp=p2.Fightinghp-(p2cost-heal);
       p2bulletspliceflag=1;
     }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
     IsCollidedToWallsMovingPointOrSurface(
