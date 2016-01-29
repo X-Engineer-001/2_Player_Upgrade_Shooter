@@ -55,6 +55,8 @@ var absorb=document.createElement("img");
 absorb.src="images/absorb.png";
 var attack=document.createElement("img");
 attack.src="images/attack.png";
+var bulletline=document.createElement("img");
+bulletline.src="images/bulletline.png";
 var walls=[];
 var p1bullets=[];
 var p2bullets=[];
@@ -259,7 +261,7 @@ document.onkeydown=function(){
         p1bullets.push(newbullet);
       }
       p1.Fightingbullet=p1.Fightingbullet-1;
-      p1shotdelay=FPS;
+      p1shotdelay=FPS/2;
     }
   }
   if(keycode==86){
@@ -269,7 +271,7 @@ document.onkeydown=function(){
         p2bullets.push(newbullet);
       }
       p2.Fightingbullet=p2.Fightingbullet-1;
-      p2shotdelay=FPS;
+      p2shotdelay=FPS/2;
     }
   }
   }
@@ -316,6 +318,7 @@ function draw(){
     flag=1;
   }
   if(flag==1){
+    counter=counter+1;
     ctx.drawImage(bg,0,0,700,700);
     for(var i=0;i<walls.length;i++){
     ctx.drawImage(wall,walls[i].x,walls[i].y,walls[i].width,walls[i].height);
@@ -390,6 +393,16 @@ function draw(){
     p2shotdelay=p2shotdelay-1;
     ctx.drawImage(p1bullet,690,700-(700*p1.Fightinghp/p1.Hp),10,700*p1.Fightinghp/p1.Hp);
     ctx.drawImage(p2bullet,0,700-(700*p2.Fightinghp/p2.Hp),10,700*p2.Fightinghp/p2.Hp);
+    if(counter%FPS==0){
+      if(p1.Fightingbullet<p1.Bullet){
+        p1.Fightingbullet=p1.Fightingbullet+1;
+      }
+      if(p2.Fightingbullet<p2.Bullet){
+        p2.Fightingbullet=p2.Fightingbullet+1;
+      }
+    }
+    ctx.drawImage(bulletline,680,700-(700*p1.Fightingbullet/p1.Bullet),10,700*p1.Fightingbullet/p1.Bullet);
+    ctx.drawImage(bulletline,10,700-(700*p2.Fightingbullet/p2.Bullet),10,700*p2.Fightingbullet/p2.Bullet);
   }
 }
 setInterval(draw,1000/FPS);
