@@ -262,23 +262,19 @@ document.onkeydown=function(){
     p2key=83;
     p2.movedirection={x:0,y:1};
   }
-  if(keycode==96){
-    if(p1shotdelay<=0&&p1.Fightingbullet>0){
-      for(var i=0;i<p1.Shot;i++){
-        var newbullet=new P1bullet();
-        p1bullets.push(newbullet);
-      }
-      p1.Fightingbullet=p1.Fightingbullet-1;
+  if(keycode==96&&p1.Fightingbullet>0){
+    for(var i=0;i<p1.Shot;i++){
+      var newbullet=new P1bullet();
+      p1bullets.push(newbullet);
     }
+    p1.Fightingbullet=p1.Fightingbullet-1;
   }
-  if(keycode==86){
-    if(p2shotdelay<=0&&p2.Fightingbullet>0){
-      for(var i=0;i<p2.Shot;i++){
-        var newbullet=new P2bullet();
-        p2bullets.push(newbullet);
-      }
-      p2.Fightingbullet=p2.Fightingbullet-1;
+  if(keycode==86&&p2.Fightingbullet>0){
+    for(var i=0;i<p2.Shot;i++){
+      var newbullet=new P2bullet();
+      p2bullets.push(newbullet);
     }
+    p2.Fightingbullet=p2.Fightingbullet-1;
   }
   }
 }
