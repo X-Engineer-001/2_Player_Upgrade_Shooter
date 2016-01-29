@@ -204,26 +204,26 @@ function P2bullet(){
   };
 }
 function Upgrade(){
-  var randommath=Math.floor(Math.random()*14);
-  if(randommath==13){
+  var randommath=Math.floor(Math.random()*31);
+  if(randommath==30){
     this.item=bullet;
   }
-  if(randommath==12){
+  if(randommath==29){
     this.item=shot;
   }
-  if(randommath==11||randommath==10){
+  if(randommath==28||randommath==27||randommath==26){
     this.item=absorb;
   }
-  if(randommath==9||randommath==8){
+  if(randommath==25||randommath==24||randommath==23){
     this.item=critical;
   }
-  if(randommath==7||randommath==6){
+  if(randommath==22||randommath==231||randommath==20){
     this.item=retort;
   }
-  if(randommath==5||randommath==4||randommath==3){
+  if(randommath==19||randommath==18||randommath==17||randommath==16||randommath==15||randommath==14||randommath==13||randommath==12||randommath==11||randommath==10){
     this.item=attack;
   }
-  if(randommath==2||randommath==1||randommath==0){
+  if(randommath==9||randommath==8||randommath==7||randommath==6||randommath==5||randommath==4||randommath==3||randommath==2||randommath==1||randommath==0){
     this.item=hp;
   }
   this.x=25+((counter%3)*225);
