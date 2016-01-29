@@ -1,5 +1,11 @@
 var FPS=60;
 var counter=0;
+var p1absorbmark=0;
+var p1criticalmark=0;
+var p1retortmark=0;
+var p2absorbmark=0;
+var p2criticalmark=0;
+var p2retortmark=0;
 var p1bulletspliceflag=0;
 var p2bulletspliceflag=0;
 var p1shotdelay=0;
@@ -27,24 +33,6 @@ var p2l=document.createElement("img");
 p2l.src="images/l/p2planel.png";
 var p2r=document.createElement("img");
 p2r.src="images/r/p2planer.png";
-var armoru=document.createElement("img");
-armoru.src="images/u/armoru.png";
-var armord=document.createElement("img");
-armord.src="images/d/armord.png";
-var armorl=document.createElement("img");
-armorl.src="images/l/armorl.png";
-var armorr=document.createElement("img");
-armorr.src="images/r/armorr.png";
-var gunu=document.createElement("img");
-gunu.src="images/u/gunu.png";
-var gund=document.createElement("img");
-gund.src="images/d/gund.png";
-var gunl=document.createElement("img");
-gunl.src="images/l/gunl.png";
-var gunr=document.createElement("img");
-gunr.src="images/r/gunr.png";
-var item=document.createElement("img");
-item.src="images/item.png";
 var p1bullet=document.createElement("img");
 p1bullet.src="images/p1bullet.png";
 var p2bullet=document.createElement("img");
@@ -55,6 +43,16 @@ var absorb=document.createElement("img");
 absorb.src="images/absorb.png";
 var attack=document.createElement("img");
 attack.src="images/attack.png";
+var bullet=document.createElement("img");
+bullet.src="images/bullet.png";
+var critical=document.createElement("img");
+critical.src="images/critical.png";
+var hp=document.createElement("img");
+hp.src="images/hp.png";
+var retort=document.createElement("img");
+retort.src="images/retort.png";
+var shot=document.createElement("img");
+shot.src="images/shot.png";
 var bulletline=document.createElement("img");
 bulletline.src="images/bulletline.png";
 var walls=[];
@@ -121,12 +119,15 @@ function P1bullet(){
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
         p2cost=p2cost+(p1.Attack*p1.Critical);
+        p1criticalmark=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
         heal=p2cost*p1.Absorb;
+        p1absorbmark=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
         p1cost=p2cost*p2.Retort;
+        p2retortmark=FPS;
       }
       p2.Fightinghp=p2.Fightinghp-p2cost;
       p1.Fightinghp=p1.Fightinghp-(p1cost-heal);
@@ -162,12 +163,15 @@ function P2bullet(){
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
         p1cost=p1cost+(p2.Attack*p2.Critical);
+        p2criticalmark=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
         heal=p1cost*p2.Absorb;
+        p2absorbmark=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
         p2cost=p1cost*p1.Retort;
+        p1retortmark=FPS;
       }
       p1.Fightinghp=p1.Fightinghp-p1cost;
       p2.Fightinghp=p2.Fightinghp-(p2cost-heal);
@@ -393,7 +397,7 @@ function draw(){
     p2shotdelay=p2shotdelay-1;
     ctx.drawImage(p1bullet,690,700-(700*p1.Fightinghp/p1.Hp),10,700*p1.Fightinghp/p1.Hp);
     ctx.drawImage(p2bullet,0,700-(700*p2.Fightinghp/p2.Hp),10,700*p2.Fightinghp/p2.Hp);
-    if(counter%FPS==0){
+    if(counter%(FPS*3/2)==0||counter%(FPS*3/2)==0.5){
       if(p1.Fightingbullet<p1.Bullet){
         p1.Fightingbullet=p1.Fightingbullet+1;
       }
@@ -403,6 +407,30 @@ function draw(){
     }
     ctx.drawImage(bulletline,680,700-(700*p1.Fightingbullet/p1.Bullet),10,700*p1.Fightingbullet/p1.Bullet);
     ctx.drawImage(bulletline,10,700-(700*p2.Fightingbullet/p2.Bullet),10,700*p2.Fightingbullet/p2.Bullet);
+    if(p1criticalmark>0){
+      ctx.drawImage(critical,660,0,20,20);
+      p1criticalmark=p1criticalmark-1;
+    }
+    if(p1absorbmark>0){
+      ctx.drawImage(absorb,640,0,20,20);
+      p1absorbmark=p1absorbmark-1;
+    }
+    if(p1retortmark>0){
+      ctx.drawImage(retort,620,0,20,20);
+      p1retortmark=p1retortmark-1;
+    }
+    if(p2criticalmark>0){
+      ctx.drawImage(critical,20,0,20,20);
+      p2criticalmark=p2criticalmark-1;
+    }
+    if(p2absorbmark>0){
+      ctx.drawImage(absorb,40,0,20,20);
+      p2absorbmark=p2absorbmark-1;
+    }
+    if(p2retortmark>0){
+      ctx.drawImage(retort,60,0,20,20);
+      p2retortmark=p2retortmark-1;
+    }
   }
 }
 setInterval(draw,1000/FPS);
