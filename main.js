@@ -476,7 +476,7 @@ function draw(){
       flag=2;
     }
   }
-  if(flag=2){
+  if(flag==2){
     upgrades.splice(0,upgrades.length);
     counter=0;
     var newupgrade=new Upgrade();
