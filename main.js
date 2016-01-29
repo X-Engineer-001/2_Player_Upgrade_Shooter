@@ -1,5 +1,5 @@
 var FPS=60;
-var counter=0;
+var clock=0;
 var p1absorbmarktime=0;
 var p1criticalmarktime=0;
 var p1retortmarktime=0;
@@ -8,6 +8,8 @@ var p2criticalmarktime=0;
 var p2retortmarktime=0;
 var p1bulletspliceflag=0;
 var p2bulletspliceflag=0;
+var choosing=0;
+var counter=0;
 var flag=0;
 var p1key=0;
 var p2key=0;
@@ -62,6 +64,7 @@ retortmark.src="images/retortmark.png";
 var walls=[];
 var p1bullets=[];
 var p2bullets=[];
+var upgrades=[];
 var p1={
   x:Math.floor(Math.random()*311)+350,
   y:Math.floor(Math.random()*641)+20,
@@ -135,6 +138,9 @@ function P1bullet(){
       }
       p2.Fightinghp=p2.Fightinghp-p2cost;
       p1.Fightinghp=p1.Fightinghp-(p1cost-heal);
+      if(p1.Fightinghp>p1.Hp){
+        p1.Fightinghp=p1.Hp;
+      }
       p1bulletspliceflag=1;
     }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
     IsCollidedToWallsMovingPointOrSurface(
@@ -179,6 +185,9 @@ function P2bullet(){
       }
       p1.Fightinghp=p1.Fightinghp-p1cost;
       p2.Fightinghp=p2.Fightinghp-(p2cost-heal);
+      if(p2.Fightinghp>p2.Hp){
+        p2.Fightinghp=p2.Hp;
+      }
       p2bulletspliceflag=1;
     }else if(IsCollidedToWallsMovingPointOrSurface(this.x,this.y,6,6)||
     IsCollidedToWallsMovingPointOrSurface(
@@ -193,6 +202,32 @@ function P2bullet(){
       this.y=this.y+(1000*this.direction.y/FPS);
     }
   };
+}
+function Upgrade(){
+  var randommath=Math.floor(Math.random()*14);
+  if(randommath==0){
+    this.item=bullet;
+  }
+  if(randommath==1){
+    this.item=shot;
+  }
+  if(randommath==2||randommath==3){
+    this.item=absorb;
+  }
+  if(randommath==4||randommath==5){
+    this.item=critical;
+  }
+  if(randommath==6||randommath==7){
+    this.item=retort;
+  }
+  if(randommath==8||randommath==9||randommath==10){
+    this.item=attack;
+  }
+  if(randommath==11||randommath==12||randommath==13){
+    this.item=hp;
+  }
+  this.x=25+((counter%3)*225);
+  this.y=100+((counter-(counter%3))*100);
 }
 function IsCollidedMovingPointToPointOrPointToSurface(x,y,targetx,targety,targetwidth,targetheight){
   if(x>=targetx&&
@@ -230,6 +265,20 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(flag==1){
+  if(keycode==96&&p1.Fightingbullet>0){
+    for(var i=0;i<p1.Shot;i++){
+      var newbullet=new P1bullet();
+      p1bullets.push(newbullet);
+    }
+    p1.Fightingbullet=p1.Fightingbullet-1;
+  }
+  if(keycode==86&&p2.Fightingbullet>0){
+    for(var i=0;i<p2.Shot;i++){
+      var newbullet=new P2bullet();
+      p2bullets.push(newbullet);
+    }
+    p2.Fightingbullet=p2.Fightingbullet-1;
+  }
   if(keycode==37){
     p1key=37;
     p1.movedirection={x:-1,y:0};
@@ -262,20 +311,6 @@ document.onkeydown=function(){
     p2key=83;
     p2.movedirection={x:0,y:1};
   }
-  if(keycode==96&&p1.Fightingbullet>0){
-    for(var i=0;i<p1.Shot;i++){
-      var newbullet=new P1bullet();
-      p1bullets.push(newbullet);
-    }
-    p1.Fightingbullet=p1.Fightingbullet-1;
-  }
-  if(keycode==86&&p2.Fightingbullet>0){
-    for(var i=0;i<p2.Shot;i++){
-      var newbullet=new P2bullet();
-      p2bullets.push(newbullet);
-    }
-    p2.Fightingbullet=p2.Fightingbullet-1;
-  }
   }
 }
 document.onkeyup=function(){
@@ -289,6 +324,7 @@ document.onkeyup=function(){
 }
 function draw(){
   if(flag==0){
+    walls.splice(0,walls.length);
     var newwall=new Wall();
     walls.push(newwall);
     newwall=new Wall();
@@ -317,11 +353,33 @@ function draw(){
       p2.x=Math.floor(Math.random()*311)+20;
       p2.y=Math.floor(Math.random()*641)+20;
     }
+    p1.Fightinghp=p1.Hp;
+    p2.Fightinghp=p2.Hp;
+    p1.Fightingbullet=p1.Bullet;
+    p2.Fightingbullet=p2.Bullet;
     flag=1;
   }
   if(flag==1){
-    counter=counter+1;
+    clock=clock+1;
     ctx.drawImage(bg,0,0,700,700);
+    for(var i=0;i<p1bullets.length;i++){
+      p1bullets[i].move();
+      if(p1bulletspliceflag==1){
+        p1bullets.splice(i,1);
+        p1bulletspliceflag=0;
+      }else{
+        ctx.drawImage(p1bullet,p1bullets[i].x,p1bullets[i].y,6,6);
+      }
+    }
+    for(var i=0;i<p2bullets.length;i++){
+      p2bullets[i].move();
+      if(p2bulletspliceflag==1){
+        p2bullets.splice(i,1);
+        p2bulletspliceflag=0;
+      }else{
+        ctx.drawImage(p2bullet,p2bullets[i].x,p2bullets[i].y,6,6);
+      }
+    }
     for(var i=0;i<walls.length;i++){
     ctx.drawImage(wall,walls[i].x,walls[i].y,walls[i].width,walls[i].height);
     }
@@ -373,27 +431,9 @@ function draw(){
     p2.y<20||p2.y>660){
       p2.y=p2.y-(p2.movedirection.y*300/FPS);
     }
-    for(var i=0;i<p1bullets.length;i++){
-      p1bullets[i].move();
-      if(p1bulletspliceflag==1){
-        p1bullets.splice(i,1);
-        p1bulletspliceflag=0;
-      }else{
-        ctx.drawImage(p1bullet,p1bullets[i].x,p1bullets[i].y,6,6);
-      }
-    }
-    for(var i=0;i<p2bullets.length;i++){
-      p2bullets[i].move();
-      if(p2bulletspliceflag==1){
-        p2bullets.splice(i,1);
-        p2bulletspliceflag=0;
-      }else{
-        ctx.drawImage(p2bullet,p2bullets[i].x,p2bullets[i].y,6,6);
-      }
-    }
     ctx.drawImage(p1bullet,690,700-(700*p1.Fightinghp/p1.Hp),10,700*p1.Fightinghp/p1.Hp);
     ctx.drawImage(p2bullet,0,700-(700*p2.Fightinghp/p2.Hp),10,700*p2.Fightinghp/p2.Hp);
-    if(counter%(FPS*3/2)==0||counter%(FPS*3/2)==0.5){
+    if(clock%(FPS*3/2)==0||clock%(FPS*3/2)==0.5){
       if(p1.Fightingbullet<p1.Bullet){
         p1.Fightingbullet=p1.Fightingbullet+1;
       }
@@ -426,6 +466,38 @@ function draw(){
     if(p2retortmarktime>0){
       ctx.drawImage(retortmark,60,0,20,20);
       p2retortmarktime=p2retortmarktime-1;
+    }
+    if(p1.Fightinghp<=0){
+      choosing=2;
+      flag=2;
+    }
+    if(p2.Fightinghp<=0){
+      choosing=1;
+      flag=2;
+    }
+  }
+  if(flag=2){
+    upgrades.splice(0,upgrades.length);
+    counter=0;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    counter=counter+1;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    counter=counter+1;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    counter=counter+1;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    counter=counter+1;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    counter=counter+1;
+    var newupgrade=new Upgrade();
+    upgrades.push(newupgrade);
+    for (vari=0;i<upgrades.length;i++){
+      ctx.drawImage(upgrades[i].item,upgrades[i].x,upgrades[i].y,200,200);
     }
   }
 }
