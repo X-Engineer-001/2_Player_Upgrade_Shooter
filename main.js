@@ -279,6 +279,30 @@ document.onkeydown=function(){
     }
     p2.Fightingbullet=p2.Fightingbullet-1;
   }
+  if(keycode==100){
+    p1.direction={x:-1,y:0};
+  }
+  if(keycode==104){
+    p1.direction={x:0,y:-1};
+  }
+  if(keycode==102){
+    p1.direction={x:1,y:0};
+  }
+  if(keycode==101){
+    p1.direction={x:0,y:1};
+  }
+  if(keycode==70){
+    p2.direction={x:-1,y:0};
+  }
+  if(keycode==84){
+    p2.direction={x:0,y:-1};
+  }
+  if(keycode==72){
+    p2.direction={x:1,y:0};
+  }
+  if(keycode==71){
+    p2.direction={x:0,y:1};
+  }
   if(keycode==37){
     p1key=37;
     p1.movedirection={x:-1,y:0};
