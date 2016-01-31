@@ -265,6 +265,26 @@ function IsCollidedToWallsMovingPointOrSurface(x,y,width,height){
 document.onkeydown=function(){
   var keycode=event.which||event.keyCode;
   if(flag==1){
+  if(keycode==96&&p1.Fightingbullet>0){
+    var s=function(){
+      var newbullet=new P1bullet();
+      p1bullets.push(newbullet);
+    }
+    for(var i=0;i<p1.Shot;i++){
+      setTimeout(s,500);
+    }
+    p1.Fightingbullet=p1.Fightingbullet-1;
+  }
+  if(keycode==86&&p2.Fightingbullet>0){
+    var s=function(){
+      var newbullet=new P2bullet();
+      p2bullets.push(newbullet);
+    }
+    for(var i=0;i<p2.Shot;i++){
+      setTimeout(s,500);
+    }
+    p2.Fightingbullet=p2.Fightingbullet-1;
+  }
   if(keycode==100){
     p1.direction={x:-1,y:0};
   }
@@ -323,31 +343,6 @@ document.onkeydown=function(){
   }
   }
 };
-document.onkeydown=function(){
-  var keycode=event.which||event.keyCode;
-  if(flag==1){
-    if(keycode==96&&p1.Fightingbullet>0){
-      var s=function(){
-        var newbullet=new P1bullet();
-        p1bullets.push(newbullet);
-      }
-      for(var i=0;i<p1.Shot;i++){
-        setTimeout(s,500);
-      }
-      p1.Fightingbullet=p1.Fightingbullet-1;
-    }
-    if(keycode==86&&p2.Fightingbullet>0){
-      var s=function(){
-        var newbullet=new P2bullet();
-        p2bullets.push(newbullet);
-      }
-      for(var i=0;i<p2.Shot;i++){
-        setTimeout(s,500);
-      }
-      p2.Fightingbullet=p2.Fightingbullet-1;
-    }
-  }
-}
 document.onkeyup=function(){
   var keycode=event.which||event.keyCode;
   if((keycode==37||keycode==38||keycode==39||keycode==40)&&p1key==keycode){
