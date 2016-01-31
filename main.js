@@ -102,14 +102,14 @@ function Wall(){
   this.height=Math.floor(Math.random()*31)+30;
 }
 function Wall1(){
-  this.x=p1.x-Math.floor(Math.random()*31)+70;
-  this.y=p1.y-Math.floor(Math.random()*6)+10;
+  this.x=p1.x-(Math.floor(Math.random()*31)+70);
+  this.y=p1.y-(Math.floor(Math.random()*6)+10);
   this.width=Math.floor(Math.random()*31)+30;
   this.height=Math.floor(Math.random()*31)+30;
 }
 function Wall2(){
-  this.x=p2.x+Math.floor(Math.random()*31)+90;
-  this.y=p2.y-Math.floor(Math.random()*6)+10;
+  this.x=p2.x+(Math.floor(Math.random()*31)+90);
+  this.y=p2.y-(Math.floor(Math.random()*6)+10);
   this.width=Math.floor(Math.random()*31)+30;
   this.height=Math.floor(Math.random()*31)+30;
 }
