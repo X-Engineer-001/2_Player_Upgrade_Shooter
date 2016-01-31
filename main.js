@@ -66,7 +66,7 @@ var p1bullets=[];
 var p2bullets=[];
 var upgrades=[];
 var p1={
-  x:Math.floor(Math.random()*311)+350,
+  x:Math.floor(Math.random()*211)+450,
   y:Math.floor(Math.random()*641)+20,
   direction:{x:-1,y:0},
   movedirection:{x:0,y:0},
@@ -81,7 +81,7 @@ var p1={
   Fightingbullet:5
 };
 var p2={
-  x:Math.floor(Math.random()*311)+20,
+  x:Math.floor(Math.random()*211)+20,
   y:Math.floor(Math.random()*641)+20,
   direction:{x:1,y:0},
   movedirection:{x:0,y:0},
@@ -98,6 +98,18 @@ var p2={
 function Wall(){
   this.x=Math.floor(Math.random()*671);
   this.y=Math.floor(Math.random()*671);
+  this.width=Math.floor(Math.random()*31)+30;
+  this.height=Math.floor(Math.random()*31)+30;
+}
+function Wall1(){
+  this.x=p1.x-Math.floor(Math.random()*31)+70;
+  this.y=p1.y-Math.floor(Math.random()*6)+10;
+  this.width=Math.floor(Math.random()*31)+30;
+  this.height=Math.floor(Math.random()*31)+30;
+}
+function Wall2(){
+  this.x=p2.x+Math.floor(Math.random()*31)+90;
+  this.y=p2.y-Math.floor(Math.random()*6)+10;
   this.width=Math.floor(Math.random()*31)+30;
   this.height=Math.floor(Math.random()*31)+30;
 }
@@ -446,13 +458,17 @@ function draw(){
     newwall=new Wall();
     walls.push(newwall);
     while(IsCollidedToWallsMovingPointOrSurface(p1.x,p1.y,20,20)){
-      p1.x=Math.floor(Math.random()*311)+350;
+      p1.x=Math.floor(Math.random()*211)+450;
       p1.y=Math.floor(Math.random()*641)+20;
     }
     while(IsCollidedToWallsMovingPointOrSurface(p2.x,p2.y,20,20)){
-      p2.x=Math.floor(Math.random()*311)+20;
+      p2.x=Math.floor(Math.random()*211)+20;
       p2.y=Math.floor(Math.random()*641)+20;
     }
+    newwall=new Wall1();
+    walls.push(newwall);
+    newwall=new Wall2();
+    walls.push(newwall);
     p1.Fightinghp=p1.Hp;
     p2.Fightinghp=p2.Hp;
     p1.Fightingbullet=p1.Bullet;
