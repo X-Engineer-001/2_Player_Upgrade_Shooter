@@ -388,6 +388,8 @@ document.onclick=function(event){
             p1.Attack=(p1.Attack/p1.Shot)+5;
           }
           choosing=2;
+          upgrades[i].item=bg;
+          return;
         }
         if(choosing==2){
           if(upgrades[i].item==absorb){
@@ -413,8 +415,9 @@ document.onclick=function(event){
             p2.Attack=(p2.Attack/p2.Shot)+5;
           }
           choosing=1;
+          upgrades[i].item=bg;
+          return;
         }
-        upgrades[i].item=bg;
       }
     }
   }
@@ -606,7 +609,7 @@ function draw(){
     if(choosing==2){
       ctx.drawImage(p2r,20,340,20,20);
     }
-    if(upgrades[1].item.outerHTML==bg&&upgrades[2].item.outerHTML==bg&&upgrades[3].item.outerHTML==bg&&upgrades[4].item.outerHTML==bg&&upgrades[5].item.outerHTML==bg&&upgrades[6].item.outerHTML==bg){
+    if(upgrades[1].item==bg&&upgrades[2].item==bg&&upgrades[3].item==bg&&upgrades[4].item==bg&&upgrades[5].item==bg&&upgrades[6].item==bg){
       flag=0;
     }
   }
