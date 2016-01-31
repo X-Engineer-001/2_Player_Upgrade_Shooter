@@ -72,7 +72,7 @@ var p1={
   movedirection:{x:0,y:0},
   Attack:10,
   Critical:0.2,
-  Shot:0.5,
+  Shot:1,
   Absorb:0,
   Hp:100,
   Fightinghp:100,
@@ -87,7 +87,7 @@ var p2={
   movedirection:{x:0,y:0},
   Attack:10,
   Critical:0.2,
-  Shot:0.5,
+  Shot:1,
   Absorb:0,
   Hp:100,
   Fightinghp:100,
@@ -121,11 +121,12 @@ function P1bullet(){
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)
     ){
-      var p2cost=p1.Attack;
+      var a=(p1.Attack/p1.Shot)+5;
+      var p2cost=a;
       var p1cost=0;
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
-        p2cost=p2cost+(p1.Attack*p1.Critical);
+        p2cost=p2cost+(a*p1.Critical);
         p1criticalmarktime=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
@@ -168,11 +169,12 @@ function P2bullet(){
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.x))+6,
       (((1000/FPS)-6)*FindAbsolutevValue(this.direction.y))+6)
     ){
-      var p1cost=p2.Attack;
+      var a=(p2.Attack/p2.Shot)+5;
+      var p1cost=a;
       var p2cost=0;
       var heal=0;
       if(Math.floor(Math.random()*4)==0){
-        p1cost=p1cost+(p2.Attack*p2.Critical);
+        p1cost=p1cost+(a*p2.Critical);
         p2criticalmarktime=FPS;
       }
       if(Math.floor(Math.random()*4)==0){
@@ -385,7 +387,6 @@ document.onclick=function(event){
           }
           if(upgrades[i].item==shot){
             p1.Shot=p1.Shot+1;
-            p1.Attack=(p1.Attack/p1.Shot)+5;
           }
           choosing=2;
           upgrades[i].item=bg;
@@ -412,7 +413,6 @@ document.onclick=function(event){
           }
           if(upgrades[i].item==shot){
             p2.Shot=p2.Shot+1;
-            p2.Attack=(p2.Attack/p2.Shot)+5;
           }
           choosing=1;
           upgrades[i].item=bg;
