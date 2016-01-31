@@ -609,7 +609,7 @@ function draw(){
     if(choosing==2){
       ctx.drawImage(p2r,20,340,20,20);
     }
-    if(upgrades[1].item==bg&&upgrades[2].item==bg&&upgrades[3].item==bg&&upgrades[4].item==bg&&upgrades[5].item==bg&&upgrades[6].item==bg){
+    if(upgrades[0].item==bg&&upgrades[1].item==bg&&upgrades[2].item==bg&&upgrades[3].item==bg&&upgrades[4].item==bg&&upgrades[5].item==bg){
       flag=0;
     }
   }
