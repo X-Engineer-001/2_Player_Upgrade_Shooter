@@ -271,7 +271,7 @@ document.onkeydown=function(){
       p1bullets.push(newbullet);
     }
     for(var i=0;i<p1.Shot;i++){
-      setTimeout(s,500);
+      setTimeout(s,i*300);
     }
     p1.Fightingbullet=p1.Fightingbullet-1;
   }
@@ -281,7 +281,7 @@ document.onkeydown=function(){
       p2bullets.push(newbullet);
     }
     for(var i=0;i<p2.Shot;i++){
-      setTimeout(s,500);
+      setTimeout(s,i*300);
     }
     p2.Fightingbullet=p2.Fightingbullet-1;
   }
