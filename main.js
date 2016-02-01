@@ -457,6 +457,10 @@ function draw(){
     walls.push(newwall);
     newwall=new Wall();
     walls.push(newwall);
+    p1.x=Math.floor(Math.random()*211)+450;
+    p1.y=Math.floor(Math.random()*641)+20;
+    p2.x=Math.floor(Math.random()*211)+20;
+    p2.y=Math.floor(Math.random()*641)+20;
     while(IsCollidedToWallsMovingPointOrSurface(p1.x,p1.y,20,20)){
       p1.x=Math.floor(Math.random()*211)+450;
       p1.y=Math.floor(Math.random()*641)+20;
