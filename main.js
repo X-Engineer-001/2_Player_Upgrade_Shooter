@@ -289,7 +289,7 @@ document.onkeydown=function(){
     }
     p1.Fightingbullet=p1.Fightingbullet-1;
   }
-  if(keycode==86&&p2.Fightingbullet>0){
+  if(keycode==32&&p2.Fightingbullet>0){
     var s=function(){
       var newbullet=new P2bullet();
       p2bullets.push(newbullet);
