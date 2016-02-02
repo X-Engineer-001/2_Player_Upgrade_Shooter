@@ -299,16 +299,16 @@ document.onkeydown=function(){
     }
     p2.Fightingbullet=p2.Fightingbullet-1;
   }
-  if(keycode==100){
+  if(keycode==101){
     p1.direction={x:-1,y:0};
   }
-  if(keycode==104){
+  if(keycode==105){
     p1.direction={x:0,y:-1};
   }
-  if(keycode==102){
+  if(keycode==107){
     p1.direction={x:1,y:0};
   }
-  if(keycode==101){
+  if(keycode==102){
     p1.direction={x:0,y:1};
   }
   if(keycode==70){
