@@ -477,6 +477,10 @@ function draw(){
     p2.Fightinghp=p2.Hp;
     p1.Fightingbullet=p1.Bullet;
     p2.Fightingbullet=p2.Bullet;
+    p1.direction={x:-1,y:0};
+    p2.direction={x:1,y:0};
+    p1bullets.splice(0,p1bullets.length);
+    p2bullets.splice(0,p2bullets.length);
     flag=1;
   }
   if(flag==1){
