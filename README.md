@@ -23,7 +23,7 @@
 遊戲畫面相關：<br>
 <img src="https://github.com/X-Engineer-001/2_Player_Upgrade_Shooter/blob/gh-pages/%E9%9B%99%E4%BA%BA%E6%A7%8D%E6%88%B0%E6%88%AA%E5%9C%96.png" width="500"><br>
 藍色、紅色為血量條，黃色為子彈量表。<br>
-  各屬性圖示：<br>
+各屬性圖示：<br>
   Attack  Hp     Critical  Shot    Absorb Retort   Bullet<br>
   <img src="https://github.com/X-Engineer-001/2_Player_Upgrade_Shooter/blob/gh-pages/images/attack.png" width="50">
   <img src="https://github.com/X-Engineer-001/2_Player_Upgrade_Shooter/blob/gh-pages/images/hp.png" width="50">
